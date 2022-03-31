@@ -3,11 +3,12 @@ import sqlalchemy
 from sqlalchemy import *
 
 df = pd.read_csv('huntemp.csv', ';')
+
 sql_engine = sqlalchemy.create_engine(
     'mysql+mysqldb://huntemp:huntemp@localhost/huntemp'
 )
-my_metadata = sqlalchemy.MetaData()
 
+my_metadata = sqlalchemy.MetaData()
 monthlies = Table(
     'Monthlies', my_metadata,
         Column('year', Integer, primary_key=True),
