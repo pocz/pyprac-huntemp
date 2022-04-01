@@ -21,10 +21,10 @@ for x in df['year'].unique():
 means = pd.Series(data=means_list, index=df['year'].unique())
 means.plot(color='orange')
 
-plt.gca().set(title='Yearly Mean', ylabel= 'Temperature (°C)')
+plt.gca().set(title='Yearly Mean Temperatures')
+plt.gca().yaxis.set_major_formatter('{x} °C')
 plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(10.00))
 plt.gca().yaxis.set_major_locator(ticker.MultipleLocator(0.50))
-plt.gca().xaxis.set_minor_locator(ticker.MultipleLocator(5))
 plt.gca().yaxis.set_minor_locator(ticker.MultipleLocator(0.25))
 
 plt.show()

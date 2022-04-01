@@ -16,11 +16,11 @@ plt.plot(df.index, df.avgt, color='tab:red')
 
 plt.gca().set(
     xlim=(0,len(df)-53), 
-    title='Monthly Average',
-    ylabel='Temperature (°C)'
+    title='Monthly Average Temperature'
 )
 plt.gca().xaxis.set_major_formatter(
     lambda x, pos: str(int(df.loc[int(x)]['year']))
 )
+plt.gca().yaxis.set_major_formatter('{x} °C')
 
 plt.show()
