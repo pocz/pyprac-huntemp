@@ -59,7 +59,7 @@ def seasonal(df, years):
  
 def pie(df, year):
     fig, ax = plt.subplots()
-    sums = df.loc[df['year']==1966].isna().sum()
+    sums = df.loc[df['year']==year].isna().sum()
     x = [sums['year'], sums['month'], sums['avgt']]
     ax.pie(
         x, radius=3, center=(4, 4),
