@@ -10,7 +10,8 @@ while True:
     mode = int(input('Enter number of menu option: '))
 
     if mode == 1:
-        plot.bar(data_cleaning.pollute(df, None, 700))
+        year = int(input('Enter the year to display: '))
+        plot.bar(data_cleaning.pollute(df, None, 700), year)
 
     elif mode == 2:
         plot.halves(df) 

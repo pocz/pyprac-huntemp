@@ -2,18 +2,19 @@ import matplotlib.pyplot as plt
 from matplotlib import ticker
 import pandas as pd
 
-def bar(df):
+def bar(df, year):
     fig, ax = plt.subplots()
-    years = df['year'].unique()
-    sums = []
-    counter = 0
-    for x in df['year'].unique():
-        yearly_sum = df[counter:counter+12].isna().sum().sum()
-        sums.append(yearly_sum)
-        counter += 12
-
-    ax.bar(years, sums, width=1, edgecolor="white", linewidth=1)
-    plt.gca().set(title="Number of Empty Values")
+    sums = df.loc[df['year']==year].isna().sum()
+    x = [12-sums['avgt'], sums['avgt']]
+    ax.bar(
+        ['Valid', 'Na'], x, width=1, edgecolor="white", linewidth=1
+    )
+    plt.gca().set(title=year)
+    plt.tick_params(bottom=False,left=False,labelbottom=False,labelleft=False)
+    plt.text(0,-0.5,'Valid',horizontalalignment='center')
+    plt.text(1,-0.5,'Na',horizontalalignment='center')
+    plt.text(0,-0.8, x[0],horizontalalignment='center')
+    plt.text(1,-0.8, x[1],horizontalalignment='center')
     plt.show()
 
 def halves(df):
@@ -60,14 +61,14 @@ def seasonal(df, years):
 def pie(df, year):
     fig, ax = plt.subplots()
     sums = df.loc[df['year']==year].isna().sum()
-    x = [sums['year'], sums['month'], sums['avgt']]
+    x = [12-sums['avgt'], sums['avgt']]
     ax.pie(
         x, radius=3, center=(4, 4),
         wedgeprops={"linewidth": 1, "edgecolor": "white"}, frame=True,
         autopct='%d'
     )
     plt.legend(
-        ['Year Column', 'Month Column', 'Avgt Column'],
+        ['Valid', 'Na'],
         title="Number of NaN values in:"
     )
     plt.gca().set(title=year)
